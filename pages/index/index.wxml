@@ -1,0 +1,168 @@
+<!-- 首页 -->
+<view class="page-index">
+
+  <!-- ========== 顶部欢迎区 ========== -->
+  <view class="header-section">
+    <view class="header-top">
+      <view class="greeting">
+        <text class="greeting-text">
+          {{isLogin ? '你好，' + userName : '早上好 ☀️'}}
+        </text>
+        <text class="greeting-sub">今天也是成长的一天</text>
+      </view>
+      <view wx:if="{{!isLogin}}" class="login-btn" bindtap="goToLogin">
+        登录
+      </view>
+      <view wx:else class="avatar-small">
+        <text>{{userName[0]}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========== 轮播 Banner ========== -->
+  <view class="banner-section">
+    <swiper
+      class="banner-swiper"
+      indicator-dots
+      indicator-color="rgba(255,255,255,0.5)"
+      indicator-active-color="#FFFFFF"
+      autoplay
+      interval="4000"
+      duration="500"
+      circular
+    >
+      <swiper-item
+        wx:for="{{banners}}"
+        wx:key="id"
+        data-index="{{index}}"
+        bindtap="onBannerTap"
+      >
+        <view class="banner-slide banner-slide-{{index}}">
+          <view class="banner-content">
+            <text class="banner-title">{{item.title}}</text>
+            <text class="banner-subtitle">{{item.subtitle}}</text>
+          </view>
+          <view class="banner-decoration">
+            <text class="banner-emoji">
+              {{index === 0 ? '🎯' : (index === 1 ? '💬' : '🌻')}}
+            </text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- ========== 三线入口卡片 ========== -->
+  <view class="entry-section">
+    <view
+      class="entry-card"
+      wx:for="{{entryCards}}"
+      wx:key="id"
+      data-path="{{item.path}}"
+      bindtap="onEntryTap"
+    >
+      <view class="entry-icon-wrap" style="background:{{item.bgColor}}">
+        <text class="entry-icon">{{item.icon}}</text>
+      </view>
+      <view class="entry-info">
+        <text class="entry-title">{{item.title}}</text>
+        <text class="entry-desc">{{item.desc}}</text>
+      </view>
+      <view class="entry-arrow" style="color:{{item.color}}">
+        <text>进入 ›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========== 在线倾听快速入口 ========== -->
+  <view class="listen-cta card">
+    <view class="listen-cta-left">
+      <text class="listen-cta-emoji">💬</text>
+      <view class="listen-cta-text">
+        <text class="listen-cta-title">在线倾听</text>
+        <text class="listen-cta-sub">此刻有人在，愿意听你说</text>
+      </view>
+    </view>
+    <view class="listen-cta-right">
+      <text class="listen-online-dot"></text>
+      <text class="listen-online-count">12人在线</text>
+    </view>
+    <button class="listen-cta-btn">立即连接</button>
+  </view>
+
+  <!-- ========== 推荐教练 横滑 ========== -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">推荐教练</text>
+      <text class="section-more">更多 ›</text>
+    </view>
+    <scroll-view class="coach-scroll" scroll-x enable-flex>
+      <view
+        class="coach-card"
+        wx:for="{{recommendCoaches}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onCoachTap"
+      >
+        <view class="coach-avatar">
+          <text class="coach-avatar-placeholder">{{item.name[0]}}</text>
+        </view>
+        <text class="coach-name">{{item.name}}</text>
+        <text class="coach-title-text">{{item.title}}</text>
+        <view class="coach-meta">
+          <text class="stars">⭐{{item.rating}}</text>
+          <text class="coach-orders">{{item.orders}}单</text>
+        </view>
+        <view class="coach-tag tag-warm">{{item.tag}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- ========== 免费工具 ========== -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">免费工具</text>
+    </view>
+    <view class="tools-grid">
+      <view
+        class="tool-card"
+        wx:for="{{quickTools}}"
+        wx:key="id"
+        data-path="{{item.path}}"
+        bindtap="onToolTap"
+      >
+        <text class="tool-icon">{{item.icon}}</text>
+        <text class="tool-title">{{item.title}}</text>
+        <text class="tool-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========== 最新文章 ========== -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">最新文章</text>
+      <text class="section-more">更多 ›</text>
+    </view>
+    <view
+      class="article-item"
+      wx:for="{{articles}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onArticleTap"
+    >
+      <view class="article-info">
+        <text class="article-title">{{item.title}}</text>
+        <view class="article-meta">
+          <text class="tag tag-info">{{item.category}}</text>
+          <text class="article-read">{{item.readCount}} 阅读</text>
+        </view>
+      </view>
+      <text class="article-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 底部留白 -->
+  <view class="bottom-space"></view>
+
+</view>

@@ -1,0 +1,20 @@
+<view class="page-service">
+  <view class="service-tabs">
+    <view
+      class="tab-item {{activeTab === item.key ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="key"
+      data-tab="{{item.key}}"
+      bindtap="switchTab"
+    >
+      {{item.label}}
+    </view>
+  </view>
+  <view class="service-content">
+    <view class="placeholder">
+      <text class="placeholder-icon">🚧</text>
+      <text class="placeholder-text">服务内容即将上线</text>
+      <text class="placeholder-sub">{{activeTab === 'career' ? '职业规划师列表和预约功能' : activeTab === 'coach' ? '心理教练列表和预约功能' : activeTab === 'listen' ? '在线倾听师列表和一键连接' : '青少年成长服务'}} 正在建设中...</text>
+    </view>
+  </view>
+</view>

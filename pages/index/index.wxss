@@ -1,0 +1,446 @@
+/* ========================================
+   首页样式
+   ======================================== */
+
+.page-index {
+  padding-bottom: 120rpx;
+  background: #F5F7FA;
+  min-height: 100vh;
+}
+
+/* ---- 顶部欢迎区 ---- */
+.header-section {
+  background: linear-gradient(180deg, #5B9BD5 0%, #7BB3E0 100%);
+  padding: 20rpx 32rpx 40rpx;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.greeting-text {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: block;
+}
+
+.greeting-sub {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.8);
+  margin-top: 8rpx;
+  display: block;
+}
+
+.login-btn {
+  background: rgba(255,255,255,0.25);
+  color: #FFFFFF;
+  padding: 12rpx 32rpx;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+}
+
+.avatar-small {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* ---- 轮播 Banner ---- */
+.banner-section {
+  margin: -20rpx 24rpx 24rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 24rpx rgba(91,155,213,0.25);
+}
+
+.banner-swiper {
+  height: 280rpx;
+}
+
+.banner-slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40rpx;
+}
+
+.banner-slide-0 {
+  background: linear-gradient(135deg, #5B9BD5, #4A8BC2);
+}
+
+.banner-slide-1 {
+  background: linear-gradient(135deg, #66BB6A, #4CAF50);
+}
+
+.banner-slide-2 {
+  background: linear-gradient(135deg, #F5A623, #F08C00);
+}
+
+.banner-content {
+  flex: 1;
+}
+
+.banner-title {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: block;
+}
+
+.banner-subtitle {
+  font-size: 26rpx;
+  color: rgba(255,255,255,0.9);
+  margin-top: 12rpx;
+  display: block;
+}
+
+.banner-emoji {
+  font-size: 100rpx;
+}
+
+/* ---- 三线入口卡片 ---- */
+.entry-section {
+  padding: 0 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.entry-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 28rpx 28rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+  transition: all 0.2s;
+}
+
+.entry-card:active {
+  transform: scale(0.98);
+  background: #FAFAFA;
+}
+
+.entry-icon-wrap {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.entry-icon {
+  font-size: 44rpx;
+}
+
+.entry-info {
+  flex: 1;
+}
+
+.entry-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  display: block;
+}
+
+.entry-desc {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 6rpx;
+  display: block;
+}
+
+.entry-arrow {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+/* ---- 在线倾听 CTA ---- */
+.listen-cta {
+  margin: 0 24rpx 24rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.listen-cta::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6rpx;
+  height: 100%;
+  background: linear-gradient(180deg, #66BB6A, #81C784);
+  border-radius: 3rpx;
+}
+
+.listen-cta-left {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.listen-cta-emoji {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.listen-cta-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+}
+
+.listen-cta-sub {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.listen-cta-right {
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+  display: flex;
+  align-items: center;
+}
+
+.listen-online-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: #66BB6A;
+  margin-right: 8rpx;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.listen-online-count {
+  font-size: 24rpx;
+  color: #66BB6A;
+  font-weight: 500;
+}
+
+.listen-cta-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #66BB6A, #81C784);
+  color: #FFFFFF;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 44rpx;
+  padding: 20rpx 0;
+  text-align: center;
+  border: none;
+}
+
+.listen-cta-btn:active {
+  opacity: 0.85;
+}
+
+/* ---- 通用 Section ---- */
+.section {
+  padding: 0 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #333;
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* ---- 推荐教练 横滑 ---- */
+.coach-scroll {
+  white-space: nowrap;
+  display: flex;
+}
+
+.coach-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 28rpx 24rpx;
+  margin-right: 20rpx;
+  width: 220rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+  white-space: normal;
+}
+
+.coach-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5B9BD5, #7BB3E0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.coach-avatar-placeholder {
+  font-size: 40rpx;
+  color: #FFF;
+  font-weight: 600;
+}
+
+.coach-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6rpx;
+}
+
+.coach-title-text {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+  height: 60rpx;
+}
+
+.coach-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  font-size: 22rpx;
+  margin-bottom: 12rpx;
+}
+
+.coach-meta .stars {
+  color: #F5A623;
+}
+
+.coach-orders {
+  color: #999;
+}
+
+.coach-tag {
+  font-size: 20rpx;
+}
+
+/* ---- 免费工具 ---- */
+.tools-grid {
+  display: flex;
+  gap: 16rpx;
+}
+
+.tool-card {
+  flex: 1;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 28rpx 16rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+
+.tool-card:active {
+  background: #FAFAFA;
+}
+
+.tool-icon {
+  font-size: 48rpx;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.tool-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.tool-desc {
+  font-size: 22rpx;
+  color: #999;
+  display: block;
+}
+
+/* ---- 最新文章 ---- */
+.article-item {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+
+.article-info {
+  flex: 1;
+}
+
+.article-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: 12rpx;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.article-read {
+  font-size: 22rpx;
+  color: #CCC;
+}
+
+.article-arrow {
+  font-size: 36rpx;
+  color: #CCC;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+/* ---- 底部 ---- */
+.bottom-space {
+  height: 40rpx;
+}

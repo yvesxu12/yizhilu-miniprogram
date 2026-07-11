@@ -1,0 +1,71 @@
+<view class="page-mood">
+
+  <!-- 今日记录区 -->
+  <view class="mood-card card">
+    <text class="mood-date">今天 · 记录你的心情</text>
+
+    <!-- 心情选择 -->
+    <view class="mood-selector">
+      <view
+        class="mood-item {{selectedMood === index ? 'selected' : ''}}"
+        wx:for="{{moods}}"
+        wx:key="value"
+        data-index="{{index}}"
+        bindtap="selectMood"
+      >
+        <text class="mood-emoji">{{item.emoji}}</text>
+        <text class="mood-label">{{item.label}}</text>
+      </view>
+    </view>
+
+    <!-- 文字输入 -->
+    <view class="note-input-wrap">
+      <textarea
+        class="note-input"
+        placeholder="今天发生了什么？（可以不写）"
+        placeholder-class="placeholder-text"
+        value="{{todayNote}}"
+        bindinput="onNoteInput"
+        maxlength="500"
+        auto-height
+      />
+    </view>
+
+    <!-- 提交按钮 -->
+    <button class="submit-btn" bindtap="submitMood">
+      记录今天的心情
+    </button>
+
+    <!-- AI回复 -->
+    <view class="ai-reply {{showAiReply ? 'show' : ''}}">
+      <view class="ai-reply-header">
+        <text class="ai-icon">🤖</text>
+        <text class="ai-label">小暖的回应</text>
+      </view>
+      <text class="ai-reply-text">{{aiReply || '记录今天的心情，小暖会给你温暖的回应哦~'}}</text>
+    </view>
+  </view>
+
+  <!-- 历史记录 -->
+  <view class="history-section">
+    <text class="section-title">📅 最近记录</text>
+    <view wx:if="{{diaryHistory.length === 0}}" class="empty-history">
+      <text>还没有记录，从今天开始吧 🌱</text>
+    </view>
+    <view
+      class="history-item"
+      wx:for="{{diaryHistory}}"
+      wx:key="date"
+    >
+      <view class="history-left">
+        <text class="history-emoji">{{item.moodEmoji}}</text>
+        <view class="history-info">
+          <text class="history-date">{{item.date}}</text>
+          <text class="history-note" wx:if="{{item.note}}">{{item.note}}</text>
+        </view>
+      </view>
+      <text class="history-label">{{item.moodLabel}}</text>
+    </view>
+  </view>
+
+</view>

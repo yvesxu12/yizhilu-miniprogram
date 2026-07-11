@@ -1,0 +1,44 @@
+<view class="page-message">
+
+  <!-- 顶部标题 -->
+  <view class="msg-header">
+    <text class="msg-title">消息</text>
+  </view>
+
+  <!-- 对话列表 -->
+  <view wx:if="{{conversations.length > 0}}">
+    <view
+      class="msg-item"
+      wx:for="{{conversations}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="openChat"
+    >
+      <!-- 头像 -->
+      <view class="msg-avatar {{item.type === 'ai' ? 'ai-avatar' : ''}}">
+        <text wx:if="{{item.type === 'ai'}}" class="avatar-emoji">{{item.avatar}}</text>
+        <text wx:else class="avatar-text">{{item.avatar}}</text>
+      </view>
+
+      <!-- 内容 -->
+      <view class="msg-content">
+        <view class="msg-top">
+          <text class="msg-name">{{item.name}}</text>
+          <text class="msg-time">{{item.time}}</text>
+        </view>
+        <view class="msg-bottom">
+          <text class="msg-preview">{{item.lastMsg}}</text>
+          <view wx:if="{{item.unread > 0}}" class="msg-badge">{{item.unread}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:else class="empty-msg">
+    <text class="empty-icon">💬</text>
+    <text class="empty-text">暂无消息</text>
+    <text class="empty-sub">和教练或倾听师聊聊天吧</text>
+  </view>
+
+</view>

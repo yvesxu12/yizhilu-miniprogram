@@ -1,0 +1,45 @@
+<!-- 登录页 -->
+<view class="page-login">
+  <view class="login-container">
+
+    <!-- Logo & 欢迎 -->
+    <view class="login-header">
+      <view class="logo-circle">
+        <text class="logo-text">医</text>
+      </view>
+      <text class="login-slogan">你的成长伙伴</text>
+      <text class="login-desc">职业规划 · 心理教练 · 青少年成长</text>
+    </view>
+
+    <!-- 协议勾选 -->
+    <view class="agreement-section">
+      <view class="agreement-check" bindtap="toggleAgree">
+        <view class="checkbox {{agreed ? 'checked' : ''}}">
+          <text wx:if="{{agreed}}">✓</text>
+        </view>
+        <text class="agreement-text">
+          我已阅读并同意
+          <text class="agreement-link" catchtap="viewAgreement">《用户服务协议》</text>
+          和
+          <text class="agreement-link" catchtap="viewPrivacy">《隐私政策》</text>
+        </text>
+      </view>
+    </view>
+
+    <!-- 登录按钮 -->
+    <button
+      class="login-main-btn {{canAgree ? '' : 'disabled'}}"
+      bindtap="onGetUserInfo"
+      disabled="{{!canAgree}}"
+    >
+      <text class="wechat-icon">💬</text>
+      微信一键登录
+    </button>
+
+    <!-- 跳过登录 -->
+    <view class="skip-login" bindtap="skipLogin">
+      <text>先看看，暂不登录</text>
+    </view>
+
+  </view>
+</view>
