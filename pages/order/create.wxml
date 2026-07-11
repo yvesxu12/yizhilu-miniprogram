@@ -1,0 +1,73 @@
+<view class="page-order">
+  <!-- 进度条 -->
+  <view class="steps">
+    <view class="step {{step >= 1 ? 'active' : ''}}">1. 填写需求</view>
+    <view class="step-line {{step >= 2 ? 'active' : ''}}"></view>
+    <view class="step {{step >= 2 ? 'active' : ''}}">2. 选择时间</view>
+    <view class="step-line {{step >= 3 ? 'active' : ''}}"></view>
+    <view class="step {{step >= 3 ? 'active' : ''}}">3. 确认提交</view>
+  </view>
+
+  <!-- 订单摘要 -->
+  <view class="order-summary card">
+    <text class="os-title">{{serviceName}}</text>
+    <text class="os-provider">服务方：{{providerName}}</text>
+    <text class="os-meta">{{duration}} · ¥{{price}}</text>
+  </view>
+
+  <!-- Step 1: 填写需求 -->
+  <block wx:if="{{step === 1}}">
+    <view class="order-section card">
+      <text class="section-label">请描述你的需求</text>
+      <textarea
+        class="requirement-input"
+        placeholder="例如：我是一名内科医生，工作5年了，想转行去药企，但不太清楚哪个方向适合我..."
+        value="{{userRequirement}}"
+        bindinput="onRequirementInput"
+        maxlength="1000"
+      />
+      <text class="char-count">{{userRequirement.length}}/1000</text>
+    </view>
+    <button class="next-btn" bindtap="nextToStep2">下一步：选择时间</button>
+  </block>
+
+  <!-- Step 2: 选择时间 -->
+  <block wx:if="{{step === 2}}">
+    <view class="order-section card">
+      <text class="section-label">选择日期</text>
+      <picker mode="date" start="{{today}}" bindchange="selectDate">
+        <view class="picker-display">{{selectedDate || '点击选择日期'}}</view>
+      </picker>
+    </view>
+    <view class="order-section card">
+      <text class="section-label">选择时段</text>
+      <view class="time-grid">
+        <view
+          class="time-slot {{selectedSlotIndex === index ? 'selected' : ''}}"
+          wx:for="{{timeSlots}}" wx:key="index"
+          data-index="{{index}}" bindtap="selectTime"
+        >{{item}}</view>
+      </view>
+    </view>
+    <view class="step-btns">
+      <button class="back-btn" bindtap="backToStep1">上一步</button>
+      <button class="next-btn" bindtap="nextToStep3">下一步：确认提交</button>
+    </view>
+  </block>
+
+  <!-- Step 3: 确认提交 -->
+  <block wx:if="{{step === 3}}">
+    <view class="order-section card">
+      <text class="section-label">确认订单信息</text>
+      <view class="confirm-item"><text class="ci-label">服务</text><text>{{serviceName}}</text></view>
+      <view class="confirm-item"><text class="ci-label">服务方</text><text>{{providerName}}</text></view>
+      <view class="confirm-item"><text class="ci-label">时间</text><text>{{selectedDate}} {{selectedTime}}</text></view>
+      <view class="confirm-item"><text class="ci-label">时长</text><text>{{duration}}</text></view>
+      <view class="confirm-item total"><text class="ci-label">金额</text><text class="ci-price">¥{{price}}</text></view>
+    </view>
+    <view class="step-btns">
+      <button class="back-btn" bindtap="backToStep2">上一步</button>
+      <button class="submit-btn" bindtap="submitOrder">确认预约</button>
+    </view>
+  </block>
+</view>

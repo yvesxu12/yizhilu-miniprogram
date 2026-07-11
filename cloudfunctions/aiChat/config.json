@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "openapi": ["cloudbase.request"]
+  },
+  "env": {
+    "DEEPSEEK_API_KEY": "请在云函数环境变量中配置"
+  }
+}

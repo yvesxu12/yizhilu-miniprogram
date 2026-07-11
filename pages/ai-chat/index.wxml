@@ -1,0 +1,95 @@
+<view class="page-ai-chat">
+
+  <!-- ========== 角色切换 ========== -->
+  <view class="personality-bar">
+    <view
+      class="p-item {{activePersonality === item.key ? 'active' : ''}}"
+      wx:for="{{personalities}}" wx:key="key"
+      data-key="{{item.key}}" bindtap="onPersonalityTap"
+    >
+      <text class="p-emoji">{{item.emoji}}</text>
+      <text class="p-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- ========== 头部信息 ========== -->
+  <view class="chat-header" wx:if="{{personality}}">
+    <text class="chat-header-emoji">{{personality.emoji}}</text>
+    <view class="chat-header-info">
+      <text class="chat-header-name">{{personality.name}}</text>
+      <text class="chat-header-desc">{{personality.title}}</text>
+    </view>
+  </view>
+
+  <!-- ========== 安全提示 ========== -->
+  <view class="safety-tip" wx:if="{{showSafetyTip}}">
+    <text>🔒 对话内容加密保护 · 不替代专业咨询 · 危机情况会引导转介</text>
+  </view>
+
+  <!-- ========== 消息列表 ========== -->
+  <scroll-view
+    class="msg-list"
+    scroll-y
+    scroll-into-view="{{scrollToView}}"
+    scroll-with-animation
+  >
+    <view
+      class="msg-item {{item.role === 'user' ? 'msg-user' : 'msg-ai'}}"
+      wx:for="{{messages}}" wx:key="index"
+      id="msg-{{index}}"
+    >
+      <!-- AI消息 -->
+      <view wx:if="{{item.role === 'ai'}}" class="msg-bubble ai-bubble">
+        <text class="bubble-text">{{item.content}}</text>
+        <text class="bubble-time">{{item.time}}</text>
+      </view>
+
+      <!-- 用户消息 -->
+      <view wx:else class="msg-bubble user-bubble">
+        <text class="bubble-text">{{item.content}}</text>
+        <text class="bubble-time">{{item.time}}</text>
+      </view>
+    </view>
+
+    <!-- 正在输入 -->
+    <view wx:if="{{isTyping}}" class="msg-item msg-ai">
+      <view class="msg-bubble ai-bubble typing-bubble">
+        <view class="typing-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="msg-bottom-space"></view>
+  </scroll-view>
+
+  <!-- ========== 快速话题（仅倾听模式） ========== -->
+  <view class="quick-topics" wx:if="{{activePersonality === 'listener' && messages.length <= 2}}">
+    <text class="qt-label">不知道说什么？试试这些：</text>
+    <view class="qt-tags">
+      <text class="qt-tag" data-topic="今天工作上的事有点烦" bindtap="onQuickTopic">今天有点烦</text>
+      <text class="qt-tag" data-topic="最近总是睡不好，感觉很累" bindtap="onQuickTopic">睡不好</text>
+      <text class="qt-tag" data-topic="和朋友的关系让我有些困扰" bindtap="onQuickTopic">人际关系</text>
+      <text class="qt-tag" data-topic="对未来感到迷茫，不知道该往哪走" bindtap="onQuickTopic">感到迷茫</text>
+    </view>
+  </view>
+
+  <!-- ========== 输入区 ========== -->
+  <view class="input-bar">
+    <input
+      class="msg-input"
+      value="{{inputText}}"
+      placeholder="想说点什么..."
+      bindinput="onInput"
+      bindconfirm="sendMessage"
+      confirm-type="send"
+      maxlength="500"
+    />
+    <button class="send-btn" bindtap="sendMessage" disabled="{{!inputText.trim()}}">
+      <text>发送</text>
+    </button>
+  </view>
+
+</view>

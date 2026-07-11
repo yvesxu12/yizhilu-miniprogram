@@ -1,0 +1,105 @@
+<view class="page-connect">
+
+  <!-- 通话前：选择+连接 -->
+  <block wx:if="{{!connected}}">
+
+    <!-- 倾听师信息 -->
+    <view class="connect-header">
+      <view class="ch-avatar {{online ? 'online-avatar' : 'offline-avatar'}}">
+        <text>{{listenerName[0]}}</text>
+      </view>
+      <text class="ch-name">{{listenerName}}</text>
+      <text class="ch-status">{{online ? '🟢 在线 · 可直接连接' : '⚪ 暂离 · 可预约'}}</text>
+    </view>
+
+    <!-- 选择时长 -->
+    <view class="duration-section card">
+      <text class="section-label">选择时长</text>
+      <view class="duration-options">
+        <view
+          class="dur-item {{selectedDuration === 15 ? 'active' : ''}}"
+          bindtap="selectDuration" data-min="15"
+        >
+          <text class="dur-min">15分钟</text>
+          <text class="dur-price">¥{{basePrice}}</text>
+          <text class="dur-tag">体验价</text>
+        </view>
+        <view
+          class="dur-item {{selectedDuration === 30 ? 'active' : ''}}"
+          bindtap="selectDuration" data-min="30"
+        >
+          <text class="dur-min">30分钟</text>
+          <text class="dur-price">¥{{basePrice * 2}}</text>
+        </view>
+        <view
+          class="dur-item {{selectedDuration === 60 ? 'active' : ''}}"
+          bindtap="selectDuration" data-min="60"
+        >
+          <text class="dur-min">60分钟</text>
+          <text class="dur-price">¥{{basePrice * 3 + 10}}</text>
+          <text class="dur-tag">推荐</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 连接按钮 / 连接中 -->
+    <view class="connect-area">
+      <block wx:if="{{!connecting}}">
+        <button class="connect-main-btn" bindtap="startConnect" wx:if="{{online}}">
+          <text class="btn-emoji">💬</text>
+          开始倾听 · ¥{{selectedPrice}}
+        </button>
+        <button class="connect-main-btn offline-main-btn" wx:else>
+          <text class="btn-emoji">📅</text>
+          排队预约
+        </button>
+      </block>
+
+      <!-- 连接中动画 -->
+      <view wx:else class="connecting-status">
+        <view class="pulse-ring">
+          <view class="pulse-inner">
+            <text class="pulse-num">{{countdown}}</text>
+          </view>
+        </view>
+        <text class="connecting-text">正在为你连接 {{listenerName}}...</text>
+        <text class="connecting-sub">请稍候，马上就好</text>
+        <view class="cancel-btn" bindtap="cancelConnect">取消</view>
+      </view>
+    </view>
+
+    <!-- 提示 -->
+    <view class="connect-tips card">
+      <text class="tips-title">📌 倾听前请了解</text>
+      <text class="tips-item">· 倾听师不是心理咨询师，不做诊断和治疗</text>
+      <text class="tips-item">· 通话内容将严格保密</text>
+      <text class="tips-item">· 如需要专业心理帮助，我们会引导转介</text>
+    </view>
+  </block>
+
+  <!-- 通话中界面 -->
+  <block wx:else>
+    <view class="call-screen">
+      <view class="call-avatar-wrap">
+        <view class="call-avatar online-avatar">
+          <text>{{listenerName[0]}}</text>
+        </view>
+        <view class="call-wave"></view>
+      </view>
+      <text class="call-name">{{listenerName}}</text>
+      <text class="call-status">通话中...</text>
+      <view class="call-timer">
+        <text class="call-elapsed">00:02:35</text>
+      </view>
+      <view class="call-tip">
+        <text>她说：你可以从任何地方开始，不急。</text>
+      </view>
+      <view class="call-actions">
+        <button class="call-end-btn" bindtap="endCall">
+          <text>结束通话</text>
+        </button>
+      </view>
+    </view>
+  </block>
+
+</view>

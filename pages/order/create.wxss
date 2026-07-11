@@ -1,0 +1,27 @@
+.page-order { min-height:100vh; background:#F5F7FA; padding:24rpx; padding-bottom:60rpx; }
+.steps { display:flex; align-items:center; justify-content:center; margin-bottom:24rpx; padding:20rpx; background:#FFF; border-radius:12rpx; }
+.step { font-size:22rpx; color:#CCC; }
+.step.active { color:#5B9BD5; font-weight:600; }
+.step-line { width:48rpx; height:2rpx; background:#EEE; margin:0 8rpx; }
+.step-line.active { background:#5B9BD5; }
+.order-summary { padding:24rpx; margin-bottom:20rpx; }
+.os-title { font-size:32rpx; font-weight:700; color:#333; display:block; }
+.os-provider { font-size:26rpx; color:#999; display:block; margin:8rpx 0; }
+.os-meta { font-size:24rpx; color:#666; }
+.order-section { padding:24rpx; margin-bottom:20rpx; }
+.section-label { font-size:28rpx; font-weight:600; color:#333; display:block; margin-bottom:16rpx; }
+.requirement-input { width:100%; min-height:200rpx; background:#F8F9FA; border-radius:12rpx; padding:20rpx; font-size:28rpx; box-sizing:border-box; }
+.char-count { text-align:right; font-size:22rpx; color:#CCC; margin-top:8rpx; }
+.picker-display { padding:20rpx; background:#F8F9FA; border-radius:12rpx; font-size:28rpx; color:#333; }
+.time-grid { display:flex; flex-wrap:wrap; gap:16rpx; }
+.time-slot { padding:16rpx 28rpx; background:#F8F9FA; border-radius:12rpx; font-size:26rpx; color:#666; border:2rpx solid transparent; }
+.time-slot.selected { background:#E3F2FD; border-color:#5B9BD5; color:#5B9BD5; font-weight:600; }
+.next-btn { width:100%; background:linear-gradient(135deg,#5B9BD5,#7BB3E0); color:#FFF; font-size:30rpx; font-weight:600; border-radius:44rpx; padding:24rpx 0; border:none; margin-top:20rpx; }
+.submit-btn { flex:1; background:linear-gradient(135deg,#F5A623,#FF9800); color:#FFF; font-size:30rpx; font-weight:600; border-radius:44rpx; padding:24rpx 0; border:none; }
+.back-btn { width:180rpx; background:#F5F5F5; color:#666; font-size:28rpx; border-radius:44rpx; padding:24rpx 0; border:none; }
+.step-btns { display:flex; gap:16rpx; }
+.confirm-item { display:flex; justify-content:space-between; padding:16rpx 0; border-bottom:1rpx solid #F5F5F5; font-size:26rpx; color:#333; }
+.confirm-item:last-child { border-bottom:none; }
+.total { margin-top:8rpx; }
+.ci-label { color:#999; }
+.ci-price { font-size:36rpx; font-weight:700; color:#F5A623; }

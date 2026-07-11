@@ -1,0 +1,61 @@
+<view class="page-detail" wx:if="{{provider}}">
+  <!-- 头部 -->
+  <view class="detail-header">
+    <view class="dh-avatar">
+      <text>{{provider.avatar}}</text>
+    </view>
+    <text class="dh-name">{{provider.name}}</text>
+    <text class="dh-title">{{provider.title}}</text>
+    <view class="dh-meta">
+      <text class="stars">⭐{{provider.rating}}</text>
+      <text>|</text>
+      <text>{{provider.orders}}单</text>
+    </view>
+    <view class="dh-tags">
+      <text class="tag" wx:for="{{provider.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 简介 -->
+  <view class="detail-section card">
+    <text class="section-title">个人简介</text>
+    <text class="intro-text">{{provider.intro}}</text>
+  </view>
+
+  <!-- 服务列表 -->
+  <view class="detail-section card">
+    <text class="section-title">服务项目</text>
+    <view
+      class="d-service-item"
+      wx:for="{{provider.services}}" wx:key="name"
+      data-service="{{item}}" bindtap="bookService"
+    >
+      <view class="ds-info">
+        <text class="ds-name">{{item.name}}</text>
+        <text class="ds-desc">{{item.desc}}</text>
+        <text class="ds-duration">⏱ {{item.duration}}</text>
+      </view>
+      <view class="ds-price-action">
+        <text class="ds-price">¥{{item.price}}</text>
+        <text class="ds-action">预约</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户评价 -->
+  <view class="detail-section card">
+    <text class="section-title">用户评价 ({{provider.reviews.length}})</text>
+    <view class="review-item" wx:for="{{provider.reviews}}" wx:key="index">
+      <view class="review-top">
+        <text class="review-user">{{item.user}}</text>
+        <text class="stars">{"⭐".repeat(item.rating)}</text>
+      </view>
+      <text class="review-text">{{item.text}}</text>
+      <text class="review-time">{{item.time}}</text>
+    </view>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>
+
+<view wx:else class="loading">加载中...</view>

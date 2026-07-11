@@ -1,0 +1,29 @@
+.page-detail { min-height:100vh; background:#F5F7FA; padding-bottom:120rpx; }
+.detail-header { background:linear-gradient(180deg,#5B9BD5,#7BB3E0); padding:40rpx 32rpx 32rpx; text-align:center; }
+.dh-avatar { width:120rpx; height:120rpx; border-radius:50%; background:rgba(255,255,255,.3); display:flex; align-items:center; justify-content:center; margin:0 auto 16rpx; }
+.dh-avatar text { font-size:48rpx; color:#FFF; font-weight:700; }
+.dh-name { font-size:36rpx; color:#FFF; font-weight:700; display:block; }
+.dh-title { font-size:26rpx; color:rgba(255,255,255,.8); display:block; margin:8rpx 0; }
+.dh-meta { font-size:24rpx; color:rgba(255,255,255,.9); display:flex; justify-content:center; gap:16rpx; margin-bottom:16rpx; }
+.dh-tags { display:flex; justify-content:center; flex-wrap:wrap; gap:8rpx; }
+.dh-tags .tag { display:inline-block; padding:6rpx 20rpx; border-radius:24rpx; font-size:22rpx; background:rgba(255,255,255,.25); color:#FFF; }
+.detail-section { margin:20rpx 24rpx; padding:28rpx; }
+.section-title { font-size:30rpx; font-weight:700; color:#333; display:block; margin-bottom:20rpx; }
+.intro-text { font-size:28rpx; color:#666; line-height:1.7; }
+.d-service-item { display:flex; align-items:center; padding:20rpx 0; border-bottom:1rpx solid #F5F5F5; }
+.d-service-item:last-child { border-bottom:none; }
+.ds-info { flex:1; }
+.ds-name { font-size:28rpx; font-weight:600; color:#333; display:block; margin-bottom:4rpx; }
+.ds-desc { font-size:24rpx; color:#999; display:block; margin-bottom:4rpx; }
+.ds-duration { font-size:22rpx; color:#5B9BD5; }
+.ds-price-action { text-align:right; }
+.ds-price { font-size:32rpx; font-weight:700; color:#F5A623; display:block; }
+.ds-action { font-size:24rpx; color:#5B9BD5; border:1rpx solid #5B9BD5; border-radius:24rpx; padding:4rpx 20rpx; display:inline-block; margin-top:4rpx; }
+.review-item { padding:20rpx 0; border-bottom:1rpx solid #F5F5F5; }
+.review-item:last-child { border-bottom:none; }
+.review-top { display:flex; justify-content:space-between; margin-bottom:8rpx; }
+.review-user { font-size:26rpx; font-weight:600; color:#333; }
+.review-text { font-size:26rpx; color:#666; line-height:1.6; display:block; margin-bottom:8rpx; }
+.review-time { font-size:22rpx; color:#CCC; }
+.bottom-space { height:40rpx; }
+.loading { text-align:center; padding-top:200rpx; color:#999; }

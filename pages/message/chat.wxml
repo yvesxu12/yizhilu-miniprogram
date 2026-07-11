@@ -1,0 +1,26 @@
+<view class="page-chat">
+  <!-- 导航栏 -->
+  <view class="chat-nav">
+    <text class="chat-nav-title">{{chatName}}</text>
+    <text class="chat-nav-type">{{chatType === 'ai' ? 'AI' : chatType === 'coach' ? '职业规划师' : '倾听师'}}</text>
+  </view>
+
+  <!-- 消息列表 -->
+  <scroll-view class="chat-msgs" scroll-y scroll-with-animation>
+    <view
+      class="c-msg {{item.role === 'user' ? 'c-user' : 'c-ai'}}"
+      wx:for="{{messages}}" wx:key="index"
+    >
+      <view class="c-bubble {{item.role === 'user' ? 'c-bubble-user' : 'c-bubble-ai'}}">
+        <text>{{item.content}}</text>
+      </view>
+      <text class="c-time">{{item.time}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 输入栏 -->
+  <view class="chat-input-bar">
+    <input class="chat-input" value="{{inputText}}" placeholder="输入消息..." bindinput="onInput" bindconfirm="sendMessage" confirm-type="send"/>
+    <button class="chat-send" bindtap="sendMessage" disabled="{{!inputText.trim()}}">发送</button>
+  </view>
+</view>

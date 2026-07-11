@@ -1,20 +1,247 @@
 <view class="page-service">
+
+  <!-- ========== 顶部Tab ========== -->
   <view class="service-tabs">
     <view
       class="tab-item {{activeTab === item.key ? 'active' : ''}}"
-      wx:for="{{tabs}}"
-      wx:key="key"
-      data-tab="{{item.key}}"
-      bindtap="switchTab"
+      wx:for="{{tabs}}" wx:key="key"
+      data-tab="{{item.key}}" bindtap="switchTab"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- ========== 筛选标签 ========== -->
+  <scroll-view class="filter-bar" scroll-x enable-flex wx:if="{{filterTags.length > 0}}">
+    <view
+      class="filter-tag {{selectedFilter === tag ? 'active' : ''}}"
+      wx:for="{{filterTags}}" wx:key="*this"
+      data-tag="{{tag}}" bindtap="onFilterTap"
+    >{{tag}}</view>
+  </scroll-view>
+
+  <!-- ========================================== -->
+  <!-- Tab 1: 职业成长                              -->
+  <!-- ========================================== -->
+  <view class="tab-content" wx:if="{{activeTab === 'career'}}">
+    <view
+      class="provider-card card"
+      wx:for="{{planners}}" wx:key="id"
     >
-      {{item.label}}
+      <!-- 规划师头部 -->
+      <view class="provider-header" data-item="{{item}}" bindtap="onItemTap">
+        <view class="provider-avatar">
+          <text>{{item.avatar}}</text>
+        </view>
+        <view class="provider-info">
+          <view class="provider-name-row">
+            <text class="provider-name">{{item.name}}</text>
+            <text class="provider-rating">⭐{{item.rating}}</text>
+          </view>
+          <text class="provider-title">{{item.title}}</text>
+          <view class="provider-tags">
+            <text class="tag tag-info" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t">{{t}}</text>
+          </view>
+        </view>
+        <text class="provider-arrow">›</text>
+      </view>
+
+      <!-- 服务列表 -->
+      <view class="service-list">
+        <view
+          class="service-item"
+          wx:for="{{item.services}}" wx:key="name" wx:for-item="s"
+          data-item="{{item}}" bindtap="onItemTap"
+        >
+          <view class="service-info">
+            <text class="service-name">{{s.name}}</text>
+            <text class="service-desc">{{s.desc}}</text>
+            <text class="service-duration">⏱ {{s.duration}}</text>
+          </view>
+          <view class="service-price-action">
+            <text class="service-price">¥{{s.price}}</text>
+            <text class="service-action">预约</text>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
-  <view class="service-content">
-    <view class="placeholder">
-      <text class="placeholder-icon">🚧</text>
-      <text class="placeholder-text">服务内容即将上线</text>
-      <text class="placeholder-sub">{{activeTab === 'career' ? '职业规划师列表和预约功能' : activeTab === 'coach' ? '心理教练列表和预约功能' : activeTab === 'listen' ? '在线倾听师列表和一键连接' : '青少年成长服务'}} 正在建设中...</text>
+
+  <!-- ========================================== -->
+  <!-- Tab 2: 心理教练                                -->
+  <!-- ========================================== -->
+  <view class="tab-content" wx:if="{{activeTab === 'coach'}}">
+    <view
+      class="provider-card card"
+      wx:for="{{coaches}}" wx:key="id"
+    >
+      <view class="provider-header" data-item="{{item}}" bindtap="onItemTap">
+        <view class="provider-avatar coach-avatar">
+          <text>{{item.avatar}}</text>
+        </view>
+        <view class="provider-info">
+          <view class="provider-name-row">
+            <text class="provider-name">{{item.name}}</text>
+            <text class="provider-rating">⭐{{item.rating}}</text>
+          </view>
+          <text class="provider-title">{{item.title}}</text>
+          <view class="provider-tags">
+            <text class="tag tag-calm" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t">{{t}}</text>
+          </view>
+        </view>
+        <text class="provider-arrow">›</text>
+      </view>
+      <view class="service-list">
+        <view
+          class="service-item"
+          wx:for="{{item.services}}" wx:key="name" wx:for-item="s"
+          data-item="{{item}}" bindtap="onItemTap"
+        >
+          <view class="service-info">
+            <text class="service-name">{{s.name}}</text>
+            <text class="service-desc">{{s.desc}}</text>
+            <text class="service-duration">⏱ {{s.duration}}</text>
+          </view>
+          <view class="service-price-action">
+            <text class="service-price">¥{{s.price}}</text>
+            <text class="service-action">预约</text>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
+
+  <!-- ========================================== -->
+  <!-- Tab 3: 倾听陪伴                                -->
+  <!-- ========================================== -->
+  <view class="tab-content" wx:if="{{activeTab === 'listen'}}">
+
+    <!-- 在线提示条 -->
+    <view class="online-bar">
+      <view class="online-dot-pulse"></view>
+      <text>当前在线倾听师：{{listeners.filter(l => l.online).length}}人</text>
+      <text class="online-hint">可直接连接，无需等待</text>
+    </view>
+
+    <view
+      class="listener-card card"
+      wx:for="{{listeners}}" wx:key="id"
+    >
+      <view class="listener-main">
+        <view class="listener-avatar-wrap">
+          <view class="listener-avatar {{item.online ? 'online' : 'offline'}}">
+            <text>{{item.avatar}}</text>
+          </view>
+          <view wx:if="{{item.online}}" class="online-badge"></view>
+        </view>
+        <view class="listener-info">
+          <view class="listener-name-row">
+            <text class="listener-name">{{item.name}}</text>
+            <text class="listener-rating">⭐{{item.rating}} | {{item.orders}}单</text>
+          </view>
+          <text class="listener-title">{{item.title}}</text>
+          <view class="listener-tags">
+            <text class="tag tag-warm" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t">{{t}}</text>
+          </view>
+        </view>
+        <view class="listener-status">
+          <text class="status-text {{item.online ? 'online-text' : 'offline-text'}}">
+            {{item.online ? '🟢 在线' : '⚪ 暂离'}}
+          </text>
+          <text class="status-detail" wx:if="{{!item.online}}">预计15分钟</text>
+        </view>
+      </view>
+
+      <!-- 快速价格 -->
+      <view class="listener-prices">
+        <view
+          class="price-option {{index === 0 ? 'recommend' : ''}}"
+          wx:for="{{item.services}}" wx:key="name" wx:for-item="s"
+        >
+          <text class="price-num">¥{{s.price}}</text>
+          <text class="price-dur">{{s.duration}}</text>
+        </view>
+      </view>
+
+      <!-- 操作按钮 -->
+      <button
+        wx:if="{{item.online}}"
+        class="connect-btn"
+        data-item="{{item}}"
+        bindtap="onQuickConnect"
+      >立即倾听</button>
+      <button
+        wx:else
+        class="connect-btn offline-btn"
+        data-item="{{item}}"
+        bindtap="onQuickConnect"
+      >排队预约</button>
+    </view>
+  </view>
+
+  <!-- ========================================== -->
+  <!-- Tab 4: 青少年成长                               -->
+  <!-- ========================================== -->
+  <view class="tab-content" wx:if="{{activeTab === 'youth'}}">
+    <view
+      class="youth-card card"
+      wx:for="{{youthServices}}" wx:key="id"
+      data-item="{{item}}" bindtap="onItemTap"
+    >
+      <!-- 课程类 -->
+      <block wx:if="{{item.type === 'course'}}">
+        <view class="youth-badge">🔥 热门</view>
+        <text class="youth-name">{{item.name}}</text>
+        <text class="youth-subtitle">{{item.subtitle}}</text>
+        <view class="youth-weeks">
+          <text class="week-item" wx:for="{{item.weeks}}" wx:key="*this">{{item}}</text>
+        </view>
+        <view class="youth-bottom">
+          <text class="youth-enrolled">{{item.enrolled}}人已报名 | 剩余{{item.maxSlots - item.enrolled}}席</text>
+          <view class="youth-price-action">
+            <text class="youth-price">¥{{item.price}}</text>
+            <text class="youth-action">立即报名 ›</text>
+          </view>
+        </view>
+      </block>
+
+      <!-- 1v1教练类 -->
+      <block wx:if="{{item.type === 'coach'}}">
+        <text class="youth-name">{{item.name}}</text>
+        <view class="youth-coach-info">
+          <text class="youth-coach">{{item.coachName}}</text>
+          <text class="youth-coach-title">{{item.coachTitle}}</text>
+          <text class="youth-rating">⭐{{item.rating}} | {{item.orders}}单</text>
+        </view>
+        <text class="youth-desc">{{item.desc}}</text>
+        <view class="youth-tags">
+          <text class="tag tag-info" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t">{{t}}</text>
+        </view>
+        <view class="youth-bottom">
+          <text class="youth-note">⚠️ 18岁以下需监护人知情同意</text>
+          <view class="youth-price-action">
+            <text class="youth-price">¥{{item.price}}/次</text>
+            <text class="youth-action">为我的孩子预约 ›</text>
+          </view>
+        </view>
+      </block>
+
+      <!-- 小组类 -->
+      <block wx:if="{{item.type === 'group'}}">
+        <text class="youth-name">{{item.name}}</text>
+        <text class="youth-subtitle">{{item.subtitle}}</text>
+        <text class="youth-desc">{{item.desc}}</text>
+        <view class="youth-groups">
+          <text class="group-item" wx:for="{{item.groups}}" wx:key="*this">{{item}}</text>
+        </view>
+        <view class="youth-bottom">
+          <text class="youth-note">👥 4-6人同龄小组</text>
+          <view class="youth-price-action">
+            <text class="youth-price">¥{{item.price}}/次</text>
+            <text class="youth-action">了解更多 ›</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="bottom-space"></view>
 </view>

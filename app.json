@@ -5,8 +5,14 @@
     "pages/mood/mood",
     "pages/message/message",
     "pages/mine/mine",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/ai-chat/index",
+    "pages/provider/detail",
+    "pages/listen/connect",
+    "pages/message/chat",
+    "pages/order/create"
   ],
+  "cloud": true,
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#5B9BD5",

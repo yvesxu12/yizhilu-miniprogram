@@ -46,6 +46,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "3.6.0",
+  "cloudfunctionRoot": "cloudfunctions/",
   "appid": "wx6c8032cff272a0ac",
   "projectname": "yizhilu-miniprogram",
   "condition": {},
