@@ -218,7 +218,7 @@ Page({
   onShareAppMessage() {
     return {
       title: '医职路 - 你的成长伙伴',
-      path: '/pages/index/index'
+      path: '/pages/home/home'
     };
   }
 });

@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/home/home",
     "pages/service/service",
     "pages/mood/mood",
     "pages/message/message",
@@ -12,7 +12,6 @@
     "pages/message/chat",
     "pages/order/create"
   ],
-  "cloud": true,
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#5B9BD5",
@@ -21,12 +20,12 @@
   },
   "tabBar": {
     "color": "#999999",
-    "selectedColor": "#5B9BD5",
+    "selectedColor": "#007aff",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/home",
         "text": "首页",
         "iconPath": "images/tab-home.png",
         "selectedIconPath": "images/tab-home-active.png"
@@ -57,6 +56,7 @@
       }
     ]
   },
+  "cloud": true,
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
